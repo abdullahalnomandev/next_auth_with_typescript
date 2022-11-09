@@ -7,7 +7,7 @@ const Protected: NextPage = () => {
   const { status, data } = useSession();
 
   useEffect(() => {
-    if (status === "unauthenticated") Router.replace("/login");
+    if (status === "unauthenticated") Router.replace("/auth/login");
   }, [status]);
 
   return (

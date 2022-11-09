@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useSession, signOut, signIn } from "next-auth/react";
 
 const login = () => {
-  const { data: session } = useSession();
+  const { data: session,status } = useSession();
 
   const [userInfo, setUserInfo] = useState({ email: null, password: null });
 
-  console.log(userInfo);
+  console.log(session,status);
 
   const handleSignIn= async (e)=>{
    
@@ -79,7 +79,7 @@ const login = () => {
         </form>
         <button
           className="px-3 py-2 bg-green-600  text-white rounded-full w-full"
-          onClick={() => signIn()}
+          onClick={() => signIn('google')}
         >
           Sign in with Google
         </button>
