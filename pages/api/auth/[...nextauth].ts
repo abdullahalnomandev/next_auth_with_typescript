@@ -32,13 +32,10 @@ export const authOptions: NextAuthOptions = {
         
         const {email,password} = credentials as {
           email:string ,
-          password:string
+          password:string,
         };
 
-        if(email !=="john@gamil.com" || password !== "1234"){
-           throw Error("Invalid Credentials")
-        }
-        return {id:'1234',name:'John Doe',email:'john@gamil.com'}
+        return {id:'',email:email,password:password}
       }
     }),
 
