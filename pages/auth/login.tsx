@@ -4,12 +4,16 @@ import { useSession, signOut, signIn } from "next-auth/react";
 const login = () => {
   const { data: session,status } = useSession();
 
-  const [userInfo, setUserInfo] = useState({ email: null, password: null });
+  interface User {
+    email: string,
+    password: string
+}
+
+  const [userInfo, setUserInfo] = useState<User>({email: "", password: "" });
 
   console.log(session,status);
 
-  const handleSignIn= async (e)=>{
-   
+  const handleSignIn= async ()=>{
   const res = await signIn("credentials",{
       email:userInfo.email,
       password:userInfo.password,

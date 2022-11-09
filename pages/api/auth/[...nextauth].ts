@@ -14,18 +14,7 @@ export const authOptions: NextAuthOptions = {
 
     CredentialProvider({
       type: "credentials",
-      credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "EE@gmail.com",
-        },
-        password: {
-          label: "Password",
-          type: "Password",
-          placeholder: "Password",
-        },
-      },
+      credentials: { },
       authorize: (credentials, req) => {
         const { email, password } = credentials as {
           email: string;
