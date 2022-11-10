@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
 
     CredentialProvider({
       type: "credentials",
-      credentials: { },
+      credentials: {},
       authorize: (credentials, req) => {
         const { email, password } = credentials as {
           email: string;
@@ -26,22 +26,24 @@ export const authOptions: NextAuthOptions = {
       },
     }),
 
-  //   EmailProvider({
-  //   server: {
-  //     host: process.env.EMAIL_SERVER_HOST,
-  //     port: process.env.EMAIL_SERVER_PORT,
-  //     auth: {
-  //       user: process.env.EMAIL_SERVER_USER,
-  //       pass: process.env.EMAIL_SERVER_PASSWORD
-  //     }
-  //   },
-  //   from: process.env.EMAIL_FROM
-  // }),
+    //   EmailProvider({
+    //   server: {
+    //     host: process.env.EMAIL_SERVER_HOST,
+    //     port: process.env.EMAIL_SERVER_PORT,
+    //     auth: {
+    //       user: process.env.EMAIL_SERVER_USER,
+    //       pass: process.env.EMAIL_SERVER_PASSWORD
+    //     }
+    //   },
+    //   from: process.env.EMAIL_FROM
+    // }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+
   pages: {
     signIn: "/auth/login",
     // error:"/error",
     // signOut:"/"
-  }
+  },
 };
 export default NextAuth(authOptions);

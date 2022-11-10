@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSession, signOut, signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const login = () => {
   const { data: session,status } = useSession();
@@ -12,6 +13,7 @@ const login = () => {
   const [userInfo, setUserInfo] = useState<User>({email: "", password: "" });
 
   console.log(session,status);
+  const router = useRouter()
 
   const handleSignIn= async ()=>{
   const res = await signIn("credentials",{
@@ -24,18 +26,21 @@ const login = () => {
 
   }
 
+
   if (session) {
-    return (
-      <>
-        Signed in as {session.user?.email} <br />
-        <button
-          className="px-3 py-2 bg-red-600  text-white rounded-full m-11"
-          onClick={() => signOut()}
-        >
-          Sign out
-        </button>
-      </>
-    );
+
+    router.forward
+    // return (
+    //   <>
+    //     Signed in as {session.user?.email} <br />
+    //     <button
+    //       className="px-3 py-2 bg-red-600  text-white rounded-full m-11"
+    //       onClick={() => signOut()}
+    //     >
+    //       Sign out
+    //     </button>
+    //   </>
+    // );
   }
 
   console.log(userInfo);
@@ -116,7 +121,7 @@ const login = () => {
         </form>
         <button
           className="px-3 py-2 bg-green-600  text-white rounded-full w-full"
-          onClick={() => signIn('google',{redirect:false})}
+          onClick={() => signIn('google',{callbackUr:router.query?.callbackUrl})}
         >
           Sign in with Google
         </button>
