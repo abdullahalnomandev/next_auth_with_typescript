@@ -15,16 +15,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-<<<<<<< HEAD
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "pages/auth/login.tsx",
-    "pages/account.jsx"
+    "pages/account.jsx",
+    "pages/api/portected.js"
   ],
-=======
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/auth/login.tsx", "pages/account.jsx", "pages/api/portected.js"],
->>>>>>> adbf627df66370c5bbfbfae60d592b7a9c93e401
   "exclude": ["node_modules"]
 }

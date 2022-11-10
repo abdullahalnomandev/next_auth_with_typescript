@@ -1,18 +1,8 @@
 import { withAuth } from "next-auth/middleware";
 
-export default withAuth(function middleware() {
-
-    // return NExtResponse
-}, {
+export default withAuth({
   callbacks: {
-    // authorized: ({ token }) => !!token,
-    authorized({token}:any){
-        return token?.role === "admin"
-    }
-  },
+    authorized: ({ token }) => !!token
+  }
 });
 export const config = { matcher: ["/dashboard", "/account"] };
-
-// export { default } from "next-auth/middleware"
-
-// export const config = { matcher: ["/dashboard"] }
