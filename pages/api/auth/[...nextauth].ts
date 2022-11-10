@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
         return { id: "", email: email, password: password };
       }
     }),
+<<<<<<< HEAD
     EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER_HOST,
@@ -36,9 +37,32 @@ export const authOptions: NextAuthOptions = {
       },
       from: process.env.EMAIL_FROM
     })
+=======
+
+    //   EmailProvider({
+    //   server: {
+    //     host: process.env.EMAIL_SERVER_HOST,
+    //     port: process.env.EMAIL_SERVER_PORT,
+    //     auth: {
+    //       user: process.env.EMAIL_SERVER_USER,
+    //       pass: process.env.EMAIL_SERVER_PASSWORD
+    //     }
+    //   },
+    //   from: process.env.EMAIL_FROM
+    // }),
+>>>>>>> adbf627df66370c5bbfbfae60d592b7a9c93e401
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+
   pages: {
+<<<<<<< HEAD
     signIn: "/auth/login"
   }
+=======
+    signIn: "/auth/login",
+    // error:"/error",
+    // signOut:"/"
+  },
+>>>>>>> adbf627df66370c5bbfbfae60d592b7a9c93e401
 };
 export default NextAuth(authOptions);

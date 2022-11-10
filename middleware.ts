@@ -1,15 +1,18 @@
-import { NextRequest,NextResponse } from "next/server";
+import { withAuth } from "next-auth/middleware";
 
-export function middleware(req:NextRequest){
+export default withAuth(function middleware() {
 
-    const sessionCookie= req.cookies.get('session')
-    req.cookies.set('new_cookie','my_new_cookie')
-
-    if(req.nextUrl.pathname.startsWith('/admin')){
-        if(!sessionCookie){
-            // return next response
-            return NextResponse.rewrite('/dashboard')
-            
-        }
+    // return NExtResponse
+}, {
+  callbacks: {
+    // authorized: ({ token }) => !!token,
+    authorized({token}:any){
+        return token?.role === "admin"
     }
-}
+  },
+});
+export const config = { matcher: ["/dashboard", "/account"] };
+
+// export { default } from "next-auth/middleware"
+
+// export const config = { matcher: ["/dashboard"] }
