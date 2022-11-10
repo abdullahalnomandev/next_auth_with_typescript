@@ -1,8 +1,6 @@
 import React from 'react';
-// import { getSession, useSession } from 'next-auth/react';
 
 const Dashboard = () => {
-    // const {data:session}=useSession({required:true})
 
 
     return (
