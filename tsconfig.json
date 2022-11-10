@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/login.tsx",
+    "pages/auth/login.tsx",
     "pages/account.jsx"
   ],
   "exclude": ["node_modules"]

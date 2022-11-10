@@ -1,52 +1,44 @@
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth, { NextAuthOptions } from "next-auth";
-import CredentialProvider from 'next-auth/providers/credentials';
-
-
+import CredentialProvider from "next-auth/providers/credentials";
+import EmailProvider from "next-auth/providers/email";
 
 export const authOptions: NextAuthOptions = {
   session: {
-    strategy: "jwt",
+    strategy: "jwt"
   },
   providers: [
     GoogleProvider({
       clientId: process.env.Google_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
     }),
 
     CredentialProvider({
-      type:'credentials',
-      credentials:{
-        email:{
-          label:"Email",
-          type:"email",
-          placeholder:"EE@gmail.com"
-        },
-        password:{
-          label:"Password",
-          type:"Password",
-          placeholder:"Password"
-        }
-      },
-      authorize:(credentials,req)=>{
-        
-        const {email,password} = credentials as {
-          email:string ,
-          password:string
+      type: "credentials",
+      credentials: {},
+      authorize: (credentials, req) => {
+        const { email, password } = credentials as {
+          email: string;
+          password: string;
         };
 
-        if(email !=="john@gamil.com" || password !== "1234"){
-           throw Error("Invalid Credentials")
-        }
-        return {id:'1234',name:'John Doe',email:'john@gamil.com'}
+        return { id: "", email: email, password: password };
       }
     }),
-
+    EmailProvider({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_PORT,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD
+        }
+      },
+      from: process.env.EMAIL_FROM
+    })
   ],
-  pages:{
-    signIn:"/login",
-    // error:"/error",
-    // signOut:"/"
-}
+  pages: {
+    signIn: "/auth/login"
+  }
 };
 export default NextAuth(authOptions);
