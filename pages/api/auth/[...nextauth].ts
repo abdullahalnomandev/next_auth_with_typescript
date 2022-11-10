@@ -1,6 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
+import EmailProvider from "next-auth/providers/email";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -24,6 +25,18 @@ export const authOptions: NextAuthOptions = {
         return { id: "", email: email, password: password };
       },
     }),
+
+  //   EmailProvider({
+  //   server: {
+  //     host: process.env.EMAIL_SERVER_HOST,
+  //     port: process.env.EMAIL_SERVER_PORT,
+  //     auth: {
+  //       user: process.env.EMAIL_SERVER_USER,
+  //       pass: process.env.EMAIL_SERVER_PASSWORD
+  //     }
+  //   },
+  //   from: process.env.EMAIL_FROM
+  // }),
   ],
   pages: {
     signIn: "/auth/login",
