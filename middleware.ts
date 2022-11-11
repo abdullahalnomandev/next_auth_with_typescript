@@ -5,4 +5,4 @@ export default withAuth({
     authorized: ({ token }) => !!token
   }
 });
-export const config = { matcher: ["/dashboard", "/account"] };
+export const config = { matcher: ["/dashboard", "/account", "/protected"] };

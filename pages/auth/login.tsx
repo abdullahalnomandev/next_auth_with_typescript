@@ -12,7 +12,13 @@ const login = () => {
   const [userInfo, setUserInfo] = useState<User>({ email: "", password: "" });
 
   console.log(session, status);
+
   const router = useRouter();
+
+  const url = router?.query?.callbackUrl;
+  if (session) {
+    router.push(url as string);
+  }
 
   const handleSignIn = async () => {
     const res = await signIn("credentials", {
@@ -25,7 +31,7 @@ const login = () => {
   };
 
   if (session) {
-    router.forward;
+    // router.forward;
     // return (
     //   <>
     //     Signed in as {session.user?.email} <br />
@@ -122,15 +128,15 @@ const login = () => {
         </form>
         <button
           className="px-3 py-2 bg-green-600  text-white rounded-full w-full"
-          onClick={() =>
-            signIn("google", { callbackUr: router.query?.callbackUrl })
-          }
+          onClick={() => signIn("google")}
         >
           Sign in with Google
         </button>
         <button
           className="px-3 py-2 bg-blue-600  text-white rounded-full w-full"
-          onClick={() => signIn("facebook")}
+          onClick={() => {
+            signIn("facebook");
+          }}
         >
           FACEBOOK SIGN IN
         </button>
