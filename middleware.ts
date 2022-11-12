@@ -1,12 +1,8 @@
 import { withAuth } from "next-auth/middleware";
 
-export default withAuth( {
+export default withAuth({
   callbacks: {
-    authorized: ({ token }) => !!token,
-  },
+    authorized: ({ token }) => !!token
+  }
 });
-export const config = { matcher: ["/dashboard", "/account"] };
-
-// export { default } from "next-auth/middleware"
-
-// export const config = { matcher: ["/dashboard"] }
+export const config = { matcher: ["/dashboard", "/account", "/protected"] };

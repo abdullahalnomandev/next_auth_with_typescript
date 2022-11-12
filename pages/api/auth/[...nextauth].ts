@@ -2,17 +2,21 @@ import GoogleProvider from "next-auth/providers/google";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
 import EmailProvider from "next-auth/providers/email";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export const authOptions: NextAuthOptions = {
   session: {
-    strategy: "jwt",
+    strategy: "jwt"
   },
   providers: [
     GoogleProvider({
       clientId: process.env.Google_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
     }),
-
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID as string,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string
+    }),
     CredentialProvider({
       type: "credentials",
       credentials: {},
@@ -23,10 +27,9 @@ export const authOptions: NextAuthOptions = {
         };
 
         return { id: "", email: email, password: password };
-      },
-    }),
-
-    //   EmailProvider({
+      }
+    })
+    // EmailProvider({
     //   server: {
     //     host: process.env.EMAIL_SERVER_HOST,
     //     port: process.env.EMAIL_SERVER_PORT,
@@ -36,14 +39,14 @@ export const authOptions: NextAuthOptions = {
     //     }
     //   },
     //   from: process.env.EMAIL_FROM
-    // }),
+    // })
   ],
   secret: process.env.NEXTAUTH_SECRET,
 
   pages: {
-    signIn: "/auth/login",
+    signIn: "/auth/login"
     // error:"/error",
     // signOut:"/"
-  },
+  }
 };
 export default NextAuth(authOptions);
