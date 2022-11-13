@@ -21,7 +21,7 @@
     "**/*.tsx",
     "pages/auth/login.tsx",
     "pages/account.jsx",
-    "pages/api/portected.js"
+    "pages/api/portected.ts"
   ],
   "exclude": ["node_modules"]
 }

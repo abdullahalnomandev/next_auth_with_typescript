@@ -17,6 +17,7 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.FACEBOOK_CLIENT_ID as string,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string
     }),
+    
     CredentialProvider({
       type: "credentials",
       credentials: {},
@@ -28,7 +29,9 @@ export const authOptions: NextAuthOptions = {
 
         return { id: "", email: email, password: password };
       }
-    })
+    }),
+    
+
     // EmailProvider({
     //   server: {
     //     host: process.env.EMAIL_SERVER_HOST,
