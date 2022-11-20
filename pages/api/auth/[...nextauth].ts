@@ -6,7 +6,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 
 export const authOptions: NextAuthOptions = {
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
   },
   providers: [
     GoogleProvider({
@@ -45,11 +45,28 @@ export const authOptions: NextAuthOptions = {
     // })
   ],
   secret: process.env.NEXTAUTH_SECRET,
-
   pages: {
     signIn: "/auth/login"
     // error:"/error",
     // signOut:"/"
-  }
+  },
+
+  callbacks:{
+    async jwt({token, user, account, profile, isNewUser}){
+      
+        if(user){
+          token.id= user.id;
+        }
+        return token;
+    },
+    async session({ session, user, token }:any) {
+      
+      session.user.id = token.id;
+      return session
+    },
+  },
+
 };
 export default NextAuth(authOptions);
+
+

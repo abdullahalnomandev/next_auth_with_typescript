@@ -7,7 +7,7 @@ const Home: NextPage = () => {
 
   const postUser = async ()=>{
 
-    const signUpUser= { name:"Nishat Nusrat",email: "banglaesh11@gmail.com",  username: "bangladesh1112", passwrd:"nishatNu112112" 
+    const signUpUser= { name:"TEST",email: "test@gmail.com",  username: "test123", passwrd:"TEST123" 
     }
     try {
       const response = await axios({

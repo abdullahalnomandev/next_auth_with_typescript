@@ -3,8 +3,8 @@ import { useSession } from 'next-auth/react';
 
 const Account = () => {
 
-    const{data:session}=useSession();
-    console.log(session);
+    const{data,}=useSession();
+    console.log(data);
     
     return (
         <div>
